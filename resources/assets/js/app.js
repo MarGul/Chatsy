@@ -9,15 +9,23 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+/**
+ * Tell vue to use the first-package vue-router
+ */
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
 import App from './App.vue';
+
+import router from './router';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
     el: '#app',
+    router,
     render: h => h(App)
 });
