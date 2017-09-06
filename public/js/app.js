@@ -27474,7 +27474,7 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(8);
 
 
-var routes = [{ path: '/', name: 'home', component: __webpack_require__(42) }, { path: '/signup', name: 'signup', component: __webpack_require__(58) }, { path: '/signin', name: 'signin', component: __webpack_require__(46) }];
+var routes = [{ path: '/', name: 'home', component: __webpack_require__(42) }, { path: '/signup', name: 'signup', component: __webpack_require__(58) }, { path: '/signin', name: 'signin', component: __webpack_require__(46) }, { path: '/chat', name: 'chat', component: __webpack_require__(46) }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
 	routes: routes,
@@ -27566,7 +27566,7 @@ if (false) {
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  null,
+  __webpack_require__(61),
   /* template */
   __webpack_require__(47),
   /* styles */
@@ -27604,8 +27604,6 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "signin-view"
   }, [_c('div', {
@@ -27614,7 +27612,82 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "jumbotron"
   }, [_c('h2', {
     staticClass: "text-center"
-  }, [_vm._v("Welcome in!")])])])])
+  }, [_vm._v("Welcome in!")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-xs-12 col-sm-6 col-sm-push-3 col-md-4 col-md-push-4"
+  }, [(_vm.message) ? _c('div', {
+    staticClass: "alert alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.message)
+    }
+  }) : _vm._e(), _vm._v(" "), _c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.signin($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label"
+  }, [_vm._v("Email")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.email),
+      expression: "form.email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "email",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.form.email = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label"
+  }, [_vm._v("Password")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.password),
+      expression: "form.password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "password",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.form.password = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _vm._m(0)])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('button', {
+    staticClass: "btn btn-success",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Sign in")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -27906,6 +27979,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}).catch(function (error) {
 				_this.type = 'alert-danger';
 				_this.message = 'Could not sign you up :( . Please try again.';
+				_this.processing = false;
+			});
+		}
+	}
+});
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			form: {
+				email: '',
+				password: ''
+			},
+			message: ''
+		};
+	},
+
+	methods: {
+		signin: function signin() {
+			var _this = this;
+
+			this.processing = true;
+			this.message = '';
+			axios.post('/login', this.form).then(function (response) {
+				_this.$router.push('/chat');
+				_this.processing = false;
+			}).catch(function (error) {
+				_this.message = error.response.data.errors.email[0];
+				_this.form.password = '';
 				_this.processing = false;
 			});
 		}
