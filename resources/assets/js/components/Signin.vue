@@ -43,6 +43,8 @@
 				this.message = '';
 				axios.post('/login', this.form)
 					.then(response => {
+						this.$store.commit('SET_AUTHENTICATED', true);
+						this.$store.commit('SET_USER', response.data.user);
 						this.$router.push('/chat');
 						this.processing = false;
 					})

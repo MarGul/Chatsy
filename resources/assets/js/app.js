@@ -16,8 +16,8 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import App from './App.vue';
-
 import router from './router';
+import store from './store/store';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,5 +27,6 @@ import router from './router';
 const app = new Vue({
     el: '#app',
     router,
+    store,
     render: h => h(App)
 });

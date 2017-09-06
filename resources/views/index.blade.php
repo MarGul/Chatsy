@@ -8,6 +8,13 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <title>Chatsy</title>
+
+        <script>
+            window.auth = <?php echo json_encode([
+                'authenticated' => Auth::check(),
+                'user' => Auth::user()
+            ]); ?>
+        </script>
     </head>
     <body>
         <div id="app"></div>
