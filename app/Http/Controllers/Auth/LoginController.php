@@ -49,4 +49,29 @@ class LoginController extends Controller
     {
         return response()->json(['message' => 'Successfully logged in.', 'user' => $user], 200);
     }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        $request->session()->regenerateToken();
+
+        $_token = $request->session()->token();
+
+        if ( $request->expectsJson() ) {
+            return response()->json(['csrfToken' => $_token], 200);
+        }
+
+        return redirect('/');
+    }
 }

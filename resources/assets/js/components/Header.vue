@@ -22,7 +22,7 @@
 									{{ $store.getters.user.name }}<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Log out</a></li>
+									<li><a href="#" @click.prevent="logout">Log out</a></li>
 								</ul>
 							</li>
 						</template>
@@ -36,3 +36,25 @@
 		</nav>
 	</header>
 </template>
+
+<script>
+	export default {
+		methods: {
+			logout() {
+				axios.post('/logout')
+					.then(response => {
+						this.$store.commit('SET_AUTHENTICATED', false);
+						this.$store.commit('SET_USER', {});
+
+						// Need to set the new csrf token
+						document.head.querySelector('meta[name=csrf-token]').setAttribute('value', response.data.csrfToken);
+
+						this.$router.push('/');
+					})
+					.catch(error => {
+
+					});
+			}
+		}
+	}
+</script>
