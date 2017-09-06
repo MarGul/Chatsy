@@ -2,7 +2,7 @@ import VueRouter from 'vue-router';
 
 let routes = [
 	{ path: '/', name: 'home', component: require('./components/Home') },
-	{ path: '/register', name: 'register', component: require('./components/Register') },
+	{ path: '/signup', name: 'signup', component: require('./components/Signup') },
 	{ path: '/signin', name: 'signin', component: require('./components/Signin') },
 ];
 

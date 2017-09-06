@@ -17,7 +17,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li><router-link to="/signin">Sign in</router-link></li>
-						<li><router-link to="/register">Register</router-link></li>
+						<li><router-link to="/signup">Sign up</router-link></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->
