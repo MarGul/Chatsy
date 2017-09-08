@@ -47,7 +47,7 @@
 						this.$store.commit('SET_USER', {});
 
 						// Need to set the new csrf token
-						document.head.querySelector('meta[name=csrf-token]').setAttribute('value', response.data.csrfToken);
+						document.head.querySelector('meta[name=csrf-token]').setAttribute('content', response.data.csrfToken);
 
 						this.$router.push('/');
 					})
