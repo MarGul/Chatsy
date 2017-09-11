@@ -58,3 +58,9 @@
 		}
 	}
 </script>
+
+<style lang="scss">
+	.navbar {
+		margin-bottom: 0;
+	}
+</style>

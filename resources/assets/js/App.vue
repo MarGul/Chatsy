@@ -14,3 +14,9 @@
 		}
 	}
 </script>
+
+<style lang="scss">
+	.chatsy {
+		height: 100%;
+	}
+</style>

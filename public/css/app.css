@@ -8350,3 +8350,8 @@ button.close {
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+
